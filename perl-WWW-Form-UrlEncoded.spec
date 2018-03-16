@@ -8,12 +8,13 @@
 Summary:	WWW::Form::UrlEncoded - parser and builder for application/x-www-form-urlencoded
 Name:		perl-WWW-Form-UrlEncoded
 Version:	0.24
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/WWW/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	f586b90fa142741728547dc2ea573f15
+Patch0:		WWW-Form-UrlEncoded-0.23-arch.patch
 URL:		http://search.cpan.org/dist/WWW-Form-UrlEncoded/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -36,6 +37,7 @@ WWW::Form::UrlEncoded parsed string in this rule.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Build.PL \
@@ -59,8 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes
-%dir %{perl_vendorarch}/WWW/Form
-%{perl_vendorarch}/WWW/Form/*.pm
-%{perl_vendorarch}/WWW/Form/UrlEncoded
+%dir %{perl_vendorlib}/WWW/Form
+%{perl_vendorlib}/WWW/Form/*.pm
+%{perl_vendorlib}/WWW/Form/UrlEncoded
 %{_mandir}/man3/WWW::Form::UrlEncoded*.3*
 %{_examplesdir}/%{name}-%{version}
