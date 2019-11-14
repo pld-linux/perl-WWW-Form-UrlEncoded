@@ -7,14 +7,13 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	WWW::Form::UrlEncoded - parser and builder for application/x-www-form-urlencoded
 Name:		perl-WWW-Form-UrlEncoded
-Version:	0.24
-Release:	2
+Version:	0.26
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/WWW/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	f586b90fa142741728547dc2ea573f15
-Patch0:		WWW-Form-UrlEncoded-0.23-arch.patch
+# Source0-md5:	cbe0e1c3ee54738d900c739ea348efda
 URL:		http://search.cpan.org/dist/WWW-Form-UrlEncoded/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -37,20 +36,19 @@ WWW::Form::UrlEncoded parsed string in this rule.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
-%patch0 -p1
 
 %build
 %{__perl} Build.PL \
-	destdir=$RPM_BUILD_ROOT \
-	installdirs=vendor
-./Build
+	--destdir=$RPM_BUILD_ROOT \
+	--installdirs=vendor
+BREAK_BACKWARD_COMPAT=1 ./Build
 
-%{?with_tests:./Build test}
+%{?with_tests:BREAK_BACKWARD_COMPAT=1 ./Build test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-./Build install
+BREAK_BACKWARD_COMPAT=1 ./Build install
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a eg $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
