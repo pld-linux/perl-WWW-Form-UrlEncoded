@@ -4,7 +4,6 @@
 #
 %define		pdir	WWW
 %define		pnam	Form-UrlEncoded
-%include	/usr/lib/rpm/macros.perl
 Summary:	WWW::Form::UrlEncoded - parser and builder for application/x-www-form-urlencoded
 Name:		perl-WWW-Form-UrlEncoded
 Version:	0.26
