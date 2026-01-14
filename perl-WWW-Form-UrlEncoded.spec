@@ -7,7 +7,7 @@
 Summary:	WWW::Form::UrlEncoded - parser and builder for application/x-www-form-urlencoded
 Name:		perl-WWW-Form-UrlEncoded
 Version:	0.26
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
